@@ -66,6 +66,29 @@ class _MainAppState extends State {
                 },
                 icon: const Icon(Icons.menu));
           }),
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (context) {
+                return <PopupMenuEntry<String>>[
+                  PopupMenuItem<String>(
+                    value: 'one',
+                    child: const Text(
+                      'Option 1',
+                    ),
+                    onTap: () => print('press: Option 1'),
+                  ),
+                  PopupMenuItem<String>(
+                    value: 'two',
+                    onTap: () => print('press: Option 2'),
+                    child: const Text('Option 2'),
+                  ),
+                ];
+              },
+              onSelected: (value) {
+                print("onSelected: $value");
+              },
+            ),
+          ],
         ),
         drawer: Builder(builder: (context) {
           return Drawer(
@@ -188,7 +211,6 @@ class _MainAppState extends State {
                     actions: [
                       ElevatedButton(
                           onPressed: () {
-                            print('press btn');
                             Navigator.pop(context);
                           },
                           child: const Text('Confirm'))
